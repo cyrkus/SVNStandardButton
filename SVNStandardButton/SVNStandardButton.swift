@@ -41,6 +41,13 @@ public class SVNStandardButton: UIButton {
     
     public var customLayers: [LayerType: CALayer]?
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        self.customLayers?.forEach({
+            $0.value.frame = self.bounds
+        })
+    }
+    
     /**
      Creates and add a layer or layers of the type to the button's subview
      - parameters: 
