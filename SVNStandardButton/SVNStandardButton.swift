@@ -9,13 +9,14 @@
 import UIKit
 
 public enum SVNStandardButtonType {
-    case circle, exit, checkMark, plus
+    case circle, exit, checkMark, plus, oval
+}
 
 
 public class SVNStandardButton: UIButton {
     
-    public enum LayerType {
-        case circle, firstLine, secondLine, checkMark
+    private enum LayerType {
+        case circle, oval, firstLine, secondLine, checkMark
     }
     
     private enum ErrorType {
@@ -38,7 +39,7 @@ public class SVNStandardButton: UIButton {
     
     public var currentType: SVNStandardButtonType?
     
-    public var customLayers: [LayerType: CALayer]?
+    private var customLayers: [LayerType: CALayer]?
     
     
     /**
@@ -64,6 +65,8 @@ public class SVNStandardButton: UIButton {
             self.createTwoLineShape(shapeType: .exit, strokeColor: strokeColor, fillColor: fillColor)
         case .plus:
             self.createTwoLineShape(shapeType: .plus, strokeColor: strokeColor, fillColor: fillColor)
+        case .oval:
+            break
         }
     }
     
@@ -98,6 +101,10 @@ public class SVNStandardButton: UIButton {
                 firstLineLayer.removeFromSuperlayer()
                 secondLineLayer.removeFromSuperlayer()
                 self.animateCircleFill(withColor: .clear, duration: endDuration, withBlock: nil)
+            })
+        case (SVNStandardButtonType.circle, SVNStandardButtonType.oval):
+            self.animateCircleToOval(withBlock: { 
+                print("finished")
             })
             
         default:
@@ -221,6 +228,27 @@ public class SVNStandardButton: UIButton {
         self.layer.addSublayer(checkMarkLayer)
         self.customLayers = [LayerType.circle: circleLayer,
                              LayerType.checkMark: checkMarkLayer]
+    }
+    
+    private func animateCircleToOval(withBlock block: (() -> Void)?) {
+        guard let circleLayer = customLayers?[LayerType.circle] else { fatalError(ErrorType.nonInstanciatedLayer.description) }
+        CATransaction.begin()
+        let widthChange = circleLayer.bounds.width / 3
+        let heightChange = circleLayer.bounds.height / 4
+        let ovalRect = CGRect(x: circleLayer.bounds.origin.x - (widthChange / 2),
+                              y: circleLayer.bounds.origin.y + (heightChange / 2),
+                              width: circleLayer.bounds.width + widthChange,
+                              height: circleLayer.bounds.height - heightChange)
+        let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: ovalRect.width / 2)
+        let animation = CABasicAnimation(keyPath: "path")
+        animation.toValue = ovalPath
+        animation.duration = 2.0
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut) // animation curve is Ease Out
+        animation.fillMode = kCAFillModeBoth // keep to value after finishing
+        animation.isRemovedOnCompletion = false // don't remove after finishing
+        circleLayer.add(animation, forKey: animation.keyPath!)
+        CATransaction.setCompletionBlock(block)
+        CATransaction.commit()
     }
     
     private func animateCircleFill(withColor color: UIColor, duration: Double, withBlock block: (() -> Void)?) {
