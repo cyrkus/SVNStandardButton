@@ -15,7 +15,7 @@ public enum SVNStandardButtonType {
 
 public class SVNStandardButton: UIButton {
     
-    private enum LayerType {
+    public enum LayerType {
         case circle, oval, firstLine, secondLine, checkMark
     }
     
@@ -39,7 +39,7 @@ public class SVNStandardButton: UIButton {
     
     public var currentType: SVNStandardButtonType?
     
-    private var customLayers: [LayerType: CALayer]?
+    public var customLayers: [LayerType: CALayer]?
     
     
     /**
@@ -239,7 +239,7 @@ public class SVNStandardButton: UIButton {
                               y: self.bounds.origin.y,
                               width: self.bounds.width + widthChange,
                               height: self.bounds.height - heightChange)
-        let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: widthChange / 2)
+        let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: 15)
         let animation = CABasicAnimation(keyPath: "path")
         animation.toValue = ovalPath.cgPath
         animation.duration = 2.0
