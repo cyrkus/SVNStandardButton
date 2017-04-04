@@ -235,11 +235,11 @@ public class SVNStandardButton: UIButton {
         CATransaction.begin()
         let widthChange = circleLayer.bounds.width / 3
         let heightChange = circleLayer.bounds.height / 4
-        let ovalRect = CGRect(x: circleLayer.bounds.origin.x - (widthChange / 2),
-                              y: circleLayer.bounds.origin.y + (heightChange / 2),
+        let ovalRect = CGRect(x: circleLayer.bounds.origin.x,
+                              y: circleLayer.bounds.origin.y,
                               width: circleLayer.bounds.width + widthChange,
                               height: circleLayer.bounds.height - heightChange)
-        let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: ovalRect.width / 2)
+        let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: widthChange / 2)
         let animation = CABasicAnimation(keyPath: "path")
         animation.toValue = ovalPath.cgPath
         animation.duration = 2.0
