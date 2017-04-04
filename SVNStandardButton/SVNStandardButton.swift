@@ -241,7 +241,7 @@ public class SVNStandardButton: UIButton {
                               height: circleLayer.bounds.height - heightChange)
         let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: ovalRect.width / 2)
         let animation = CABasicAnimation(keyPath: "path")
-        animation.toValue = ovalPath
+        animation.toValue = ovalPath.cgPath
         animation.duration = 2.0
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut) // animation curve is Ease Out
         animation.fillMode = kCAFillModeBoth // keep to value after finishing
