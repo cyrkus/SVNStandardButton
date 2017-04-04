@@ -232,12 +232,16 @@ public class SVNStandardButton: UIButton {
     
     private func animateCircleToOval(withBlock block: (() -> Void)?) {
         guard let circleLayer = customLayers?[LayerType.circle] else { fatalError(ErrorType.nonInstanciatedLayer.description) }
-        let newBounds = CGRect(x: circleLayer.bounds.origin.x - 15, y: circleLayer.bounds.origin.y - 15, width: circleLayer.bounds.width + 15, height: circleLayer.bounds.height)
+        CATransaction.begin()
+        let newBounds = CGRect(x: circleLayer.bounds.origin.x - 15, y: circleLayer.bounds.origin.y - 15, width: circleLayer.bounds.width + 15, height: circleLayer.bounds.height - 15)
         let animation = CABasicAnimation(keyPath: "bounds")
         animation.fromValue = circleLayer.bounds
         animation.toValue = newBounds
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         circleLayer.bounds = newBounds
         circleLayer.add(animation, forKey: "bounds")
+        CATransaction.setCompletionBlock(block)
+        CATransaction.commit()
     }
     
     private func animateCircleFill(withColor color: UIColor, duration: Double, withBlock block: (() -> Void)?) {
