@@ -15,7 +15,7 @@ public enum SVNStandardButtonType {
 
 public class SVNStandardButton: UIButton {
     
-    private enum LayerType {
+    public enum LayerType {
         case circle, firstLine, secondLine, checkMark
     }
     
@@ -39,7 +39,7 @@ public class SVNStandardButton: UIButton {
     
     public var currentType: SVNStandardButtonType?
     
-    private var customLayers: [LayerType: CALayer]?
+    public var customLayers: [LayerType: CALayer]?
     
     /**
      Creates and add a layer or layers of the type to the button's subview
