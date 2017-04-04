@@ -304,6 +304,7 @@
 				A173AF3B1E9319DE00E8C508 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -37,7 +37,7 @@ public class SVNStandardButton: UIButton {
         }
     }
     
-    var currentType: SVNStandardButtonType?
+    public var currentType: SVNStandardButtonType?
     
     private var customLayers: [LayerType: CALayer]?
     
