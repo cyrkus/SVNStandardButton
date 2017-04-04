@@ -233,12 +233,12 @@ public class SVNStandardButton: UIButton {
     private func animateCircleToOval(withBlock block: (() -> Void)?) {
         guard let circleLayer = customLayers?[LayerType.circle] else { fatalError(ErrorType.nonInstanciatedLayer.description) }
         CATransaction.begin()
-        let widthChange = circleLayer.bounds.width / 3
-        let heightChange = circleLayer.bounds.height / 4
-        let ovalRect = CGRect(x: circleLayer.bounds.origin.x,
-                              y: circleLayer.bounds.origin.y,
-                              width: circleLayer.bounds.width + widthChange,
-                              height: circleLayer.bounds.height - heightChange)
+        let widthChange = self.bounds.width / 3
+        let heightChange = self.bounds.height / 4
+        let ovalRect = CGRect(x: self.bounds.origin.x,
+                              y: self.bounds.origin.y,
+                              width: self.bounds.width + widthChange,
+                              height: self.bounds.height - heightChange)
         let ovalPath = UIBezierPath(roundedRect: ovalRect, cornerRadius: widthChange / 2)
         let animation = CABasicAnimation(keyPath: "path")
         animation.toValue = ovalPath.cgPath
