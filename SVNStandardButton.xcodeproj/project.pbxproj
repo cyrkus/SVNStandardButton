@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A173AF361E9319DE00E8C508 /* SVNStandardButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A173AF341E9319DE00E8C508 /* SVNStandardButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A173AF3D1E9319EF00E8C508 /* SVNStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A173AF3C1E9319EF00E8C508 /* SVNStandardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A173AF311E9319DE00E8C508 /* SVNStandardButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVNStandardButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A173AF341E9319DE00E8C508 /* SVNStandardButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVNStandardButton.h; sourceTree = "<group>"; };
 		A173AF351E9319DE00E8C508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A173AF3C1E9319EF00E8C508 /* SVNStandardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVNStandardButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				A173AF341E9319DE00E8C508 /* SVNStandardButton.h */,
+				A173AF3C1E9319EF00E8C508 /* SVNStandardButton.swift */,
 				A173AF351E9319DE00E8C508 /* Info.plist */,
 			);
 			path = SVNStandardButton;
@@ -96,6 +99,7 @@
 					A173AF301E9319DE00E8C508 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = BEPPW5449K;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -132,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A173AF3D1E9319EF00E8C508 /* SVNStandardButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +245,7 @@
 		A173AF3A1E9319DE00E8C508 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = BEPPW5449K;
@@ -252,6 +258,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.7apps.SVNStandardButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -259,6 +266,7 @@
 		A173AF3B1E9319DE00E8C508 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = BEPPW5449K;
